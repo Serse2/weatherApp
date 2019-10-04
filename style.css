@@ -1,0 +1,105 @@
+:root{
+    /* Background */
+    --morning: linear-gradient( 179deg,  rgba(110,144,242,1) 3.3%, rgba(245,193,193,1) 100% );
+    --afternoon: linear-gradient( 103.3deg,  rgba(253,109,104,1) 7.7%, rgba(248,150,105,1) 90.8% );
+    --night: linear-gradient( 69.8deg,  rgba(25,49,108,1) 2.8%, rgba(1,179,201,1) 97.8% );
+    /* Color */
+    --light: #ffffff;
+    --dark: #363636;
+}
+
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--morning);
+    color: var(--light);
+} 
+
+h1{
+    
+    margin: 5px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
+
+input[type="text"]{
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #efbfc4;
+    margin: 10px;
+    font-size: 22px;
+    padding: 5px;
+    text-align: center;
+}
+button{
+    cursor: pointer;
+    border: 1px solid #efbfc4;
+    background: transparent;
+    padding: 5px 30px;
+    border-radius: 30px;
+    margin: 1rem;
+}
+button:hover{
+    background: #efbfc4
+}
+
+.icon{
+    display: block;
+    height: 150px;
+    width: 150px;
+    margin: 1rem;
+}
+
+.sole{
+    background: url(./svg/sun.svg);
+    background-size: cover;
+    animation: rotates infinite 20s linear;
+}
+.soleggiato{
+    background: url(./svg/sun-cloud.svg);
+    background-size: cover;
+    
+}
+.nuvoloso{
+    background: url(./svg/cloud.png);
+    background-size: cover;
+    transform: translateX(10%);
+    animation: poing alternate 3s linear;
+    animation-iteration-count: infinite;
+}
+.piovoso{
+    background: url(./svg/rain.svg);
+    background-size: cover;
+}
+.temporale{
+    background: url(./svg/storm.svg);
+    background-size: cover;
+}
+
+
+@keyframes rotates {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+@keyframes poing {
+    from {
+      transform: translateX(-10%);
+    }
+    to {
+      transform: translateX(10%);
+    }
+}
