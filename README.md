@@ -1,9 +1,9 @@
 # weatherApp
 
-What's the weather like into my city?
+What's the weather like ?
 
-dev: Sergio Bergamo
-source: https://openweathermap.org/
+dev: Sergio Bergamo<br>
+source: https://openweathermap.org/<br>
 icon: Flaticon
 
 <img src="./weatherapp.png">
