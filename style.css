@@ -1,6 +1,4 @@
-:focus {
-    outline: none;
-}
+
 
 :root{
     /* Background */
@@ -13,7 +11,9 @@
     /* font */
     --primary: 'Work Sans', sans-serif;
 }
-
+:focus {
+    outline: none;
+}
 
 body{
     height: 100vh;
@@ -22,6 +22,7 @@ body{
     font-family: var(--primary);
     background: var(--morning);
     color: var(--light);
+
 } 
 
 h1{
@@ -89,18 +90,20 @@ button:hover{
 .soleggiato{
     background: url(./svg/sun-cloud.svg);
     background-size: cover;
-    
+    animation: scale alternate 3s ease-in-out;
+    animation-iteration-count: infinite;
 }
 .nuvoloso{
     background: url(./svg/cloud.png);
     background-size: cover;
-    transform: translateX(10%);
     animation: poing alternate 3s linear;
     animation-iteration-count: infinite;
 }
 .piovoso{
     background: url(./svg/rain.svg);
     background-size: cover;
+    animation: scale alternate 3s ease-in-out;
+    animation-iteration-count: infinite;
 }
 .temporale{
     background: url(./svg/storm.svg);
@@ -117,7 +120,6 @@ button:hover{
       transform: rotate(360deg);
     }
 }
-
 @keyframes poing {
     from {
       transform: translateX(-10%);
@@ -126,3 +128,20 @@ button:hover{
       transform: translateX(10%);
     }
 }
+@keyframes upAndDow {
+    from {
+      transform: translateY(-10%);
+    }
+    to {
+      transform: translateY(10%);
+    }
+}
+@keyframes scale{
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+}
+

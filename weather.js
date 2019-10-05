@@ -9,6 +9,7 @@ const input = document.querySelector('input[type="text"]')
 function chengeBackground(){
   let date = new Date();
   let getHours = date.getHours()
+  console.log(getHours)
   if (getHours > 7 && getHours < 16){
     //imposta il background del colore mattino e color dark
     body.style.background = 'var(--morning)'
@@ -16,9 +17,9 @@ function chengeBackground(){
     input.style.color = 'var(--dark)'
   }else if (getHours > 17 && getHours < 20){
     //imposta il background del colore in afternoon e color light
-    body.style.background = 'var(--afternoon:)'
-    body.style.color = 'var(--dark)'
-    input.style.color = 'var(--dark)'
+    body.style.background = 'var(--afternoon)'
+    body.style.color = 'var(--light)'
+    input.style.color = 'var(--light)'
   }else{
     //imposta il background del colore in night e color light
     body.style.background = 'var(--night)'
@@ -26,7 +27,8 @@ function chengeBackground(){
     input.style.color = 'var(--light)'
   }
 }
-setInterval(chengeBackground(), 1000)
+chengeBackground()
+setInterval(chengeBackground, 1000 * 60 * 60)
 
 function refreshDate(){
   let date = new Date();
@@ -37,24 +39,33 @@ function refreshDate(){
 }
 // show weather 
 function showWeather(data){
-  
-  result.classList.remove('sole','nuvoloso','piovoso')
-  if (data.weather[0].description == 'cielo sereno' || data.weather[0].description == 'clear sky' || data.weather[0].description == 'ciel dégagé'){
+  result.classList.remove('icon','sole','nuvoloso','piovoso')
+  let descriptionWeather = data.weather[0].description
+  if (descriptionWeather == 'cielo sereno'){
     result.classList.add('icon','sole')
   }
-  if (data.weather[0].description == 'poche nuvole' || data.weather[0].description == 'few clouds' || data.weather[0].description == 'peu nuageux' || data.weather[0].description == 'nubi sparse'  ){
+  if (descriptionWeather == 'poche nuvole'){
+    result.classList.add('icon','soleggiato')
+  }
+  if (descriptionWeather == 'nubi sparse'){
     result.classList.add('icon','nuvoloso')
   }
-  if (data.weather[0].description == 'pioggia leggera'){
+  if (descriptionWeather == 'pioggia leggera'){
     result.classList.add('icon','piovoso')
   }
   document.querySelector('#temperature').innerText = `${Math.round(data.main.temp)}°`
   document.querySelector('#humidity').innerText = `umidità: ${data.main.humidity}%`
-  document.querySelector('#weather').innerText = data.weather[0].description
+  document.querySelector('#weather').innerText = descriptionWeather
   showDate.innerText = 'ora: ' + refreshDate()
 }
-
+//chiamata fetch per recupero dei dati
 async function getData(){
+  //ad ogni chiamata resetta i risultati
+  document.querySelector('#temperature').innerText = ''
+  document.querySelector('#humidity').innerText = ''
+  document.querySelector('#weather').innerText = ''
+  showDate.innerText = ''
+  //chiamata fetch
   let city = document.querySelector('#country').value
   let units = 'metric'
   let language =  'it'    //document.querySelector('#language').value
@@ -63,9 +74,20 @@ async function getData(){
   let response = await fetch(apiWeather).then(data => data.json())
   showWeather(response)
 }
-
-
 submit.addEventListener('click', getData)
 
+
+
+//funzione per inviare tramite il tasto enter
+function enterPress(e){
+  if(e.key === 'Enter'){
+    getData()
+  }
+  return
+}
+document.addEventListener('keydown', enterPress)
+
+
 //implementazioni
-// 1- una volta selezionata 
+// 1- fuso orario
+// 2- previsione
