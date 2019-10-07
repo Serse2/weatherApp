@@ -38,6 +38,11 @@ h1{
     text-align: center;
 }
 
+.error{
+    animation: error alternate .1s ;
+    animation-iteration-count: 3;
+}
+
 label{
     font-weight: 500;
     font-size: 40px;
@@ -86,6 +91,9 @@ button:hover{
     background: url(./svg/sun.svg);
     background-size: cover;
     animation: rotates infinite 20s linear;
+}
+.sole.pm{
+    background: url(./svg/mon.svg);
 }
 .soleggiato{
     background: url(./svg/sun-cloud.svg);
@@ -142,6 +150,14 @@ button:hover{
     }
     to {
       transform: scale(1.05);
+    }
+}
+
+@keyframes error{
+    from{
+        transform: translateX(-10%);
+    }to{
+        transform: translateX(10%);
     }
 }
 
