@@ -1,26 +1,29 @@
 //global 
 
-const $ = document.querySelector
 
 
-const submit = $('#submit')
-const result = $('#result')
-const showDate = $('#date')
-const body = $('body')
-const input = $('input[type="text"]')
+const submit = document.querySelector('#submit')
+const myPosition = document.querySelector('#geolocation')
+const result = document.querySelector('#result')
+const showDate = document.querySelector('#date')
+const body = document.querySelector('body')
+const input = document.querySelector('input[type="text"]')
 
-
-navigator.geolocation.getCurrentPosition(async (position) => {
+async function success(position){
   if (position) {
     const response = await execFetch(`lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
     if (!response.name){
-      $('.main').classList.add('error')
+      document.querySelector('.main').classList.add('error')
     }
-    $('#country').value = response.name
+    document.querySelector('#country').value = response.name
     showWeather(response)
   }
-});
+}
+function geolocation(){
+  navigator.geolocation.getCurrentPosition(success);
+}
 
+myPosition.addEventListener('click', geolocation)
 
 //change background and color text from hour
 function chengeBackground(){
@@ -65,29 +68,30 @@ function showWeather(data){
     'pioggerella': 'piovoso'
   }
 
-
+  //init class
   result.classList = ''
+  //add class
   if (!data.weather || !data.weather.length) { return }
   let descriptionWeather = data.weather[0].description
   result.classList.add('icon', mapIconClass[descriptionWeather])
 
   const sunset = new Date(data.sys.sunset * 1000)
-  result.classList.add((sunset < new Date() ? 'pm' : ''))
+  result.classList.add((sunset < new Date() ? 'pm' : 'am'))
 
 
   // Info
-  $('#temperature').innerText = `${Math.round(data.main.temp)}°`
-  $('#humidity').innerText = `umidità: ${data.main.humidity}%`
-  $('#weather').innerText = descriptionWeather
+  document.querySelector('#temperature').innerText = `${Math.round(data.main.temp)}°`
+  document.querySelector('#humidity').innerText = `umidità: ${data.main.humidity}%`
+  document.querySelector('#weather').innerText = descriptionWeather
   showDate.innerText = 'ora: ' + refreshDate()
 }
 
 function initContent(){
-  $('#temperature').innerText = ''
-  $('#humidity').innerText = ''
-  $('#weather').innerText = ''
+  document.querySelector('#temperature').innerText = ''
+  document.querySelector('#humidity').innerText = ''
+  document.querySelector('#weather').innerText = ''
   showDate.innerText = ''
-  $('.main').classList.remove('error')
+  document.querySelector('.main').classList.remove('error')
 }
 
 //chiamata fetch per recupero dei dati
@@ -95,17 +99,17 @@ async function getData(){
   //ad ogni chiamata resetta i risultati
   initContent()
   //chiamata fetch
-  let city = $('#country').value
+  let city = document.querySelector('#country').value
   const response = await execFetch(`q=${city}`)
   if (!response.name){
-    $('.main').classList.add('error')
+    document.querySelector('.main').classList.add('error')
   } 
   showWeather(response)
 }
 
 async function execFetch(query) {
   let units = 'metric'
-  let language =  'it'    //$('#language').value
+  let language =  'it'    //document.querySelector('#language').value
   let apikey = '&APIKEY=b9f269bc4ef38fa12c192b0fd1f1a897'
   let apiWeather = `https://api.openweathermap.org/data/2.5/weather?${query}&units=${units}&lang=${language}${apikey}`
   let response = await fetch(apiWeather)
@@ -114,7 +118,6 @@ async function execFetch(query) {
   return response
 }
 submit.addEventListener('click', getData)
-
 
 
 //funzione per inviare tramite il tasto enter
