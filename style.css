@@ -22,7 +22,6 @@ body{
     font-family: var(--primary);
     background: var(--morning);
     color: var(--light);
-
 } 
 
 h1{
@@ -75,11 +74,29 @@ button:hover{
 }
 #weather,
 #humidity,
-#date{
+#date,
+.day{
     font-weight: 300
 }
 
+.temp-prev{
+    font-weight: 500;
+    font-size: 30px; 
+}
 
+/* next days */
+.next-day{
+    display: flex;
+}
+.prev-icon{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin: 1rem;
+}
+.day{
+    padding: 15px
+}
 
 /* icon */
 .icon{
@@ -94,16 +111,16 @@ button:hover{
     animation: rotates infinite 20s linear;
 }
 .sole.pm{
-    background: url(./svg/mon.svg);
+    background: url(./svg/moon.svg);
 }
 .soleggiato{
     background: url(./svg/sun-cloud.svg);
     background-size: cover;
-    animation: scale alternate 3s ease-in-out;
+    animation: scale alternate 1s ease-in-out;
     animation-iteration-count: infinite;
 }
 .nuvoloso{
-    background: url(./svg/cloud.png);
+    background: url(./svg/cloud.svg);
     background-size: cover;
     animation: poing alternate 3s linear;
     animation-iteration-count: infinite;
@@ -111,12 +128,20 @@ button:hover{
 .piovoso{
     background: url(./svg/rain.svg);
     background-size: cover;
-    animation: scale alternate 3s ease-in-out;
+    animation: scale alternate 1s ease-in-out;
     animation-iteration-count: infinite;
 }
 .temporale{
     background: url(./svg/storm.svg);
     background-size: cover;
+    animation: scale alternate 1s ease-in-out;
+    animation-iteration-count: infinite;
+}
+.nebbia{
+    background: url(./svg/fog.svg);
+    background-size: cover;
+    animation: poing alternate 3s linear;
+    animation-iteration-count: infinite;
 }
 
 
@@ -150,7 +175,7 @@ button:hover{
       transform: scale(1);
     }
     to {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 }
 
