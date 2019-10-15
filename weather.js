@@ -130,7 +130,23 @@ function showWeatherPrev(responsePrev){
   document.querySelector('#dateThree').innerText = dayThree
   document.querySelector('#weatherDayThree').innerText = descriptionWeatherThree
   
+  //temperatura day one creata con js
+  tempOne.classList.add('temp-prev')
+  tempOne.innerHTML = `${Math.round(responsePrev.list[8].main.temp)}°`
+  let parentTempOne = document.querySelector('.day-one')
+  parentTempOne.insertBefore(tempOne, document.querySelector('#weatherDayOne'))
 
+  //temperatura day two creata con js
+  tempTwo.classList.add('temp-prev')
+  tempTwo.innerHTML = `${Math.round(responsePrev.list[16].main.temp)}°`
+  let parentTempTwo = document.querySelector('.day-two')
+  parentTempTwo.insertBefore(tempTwo, document.querySelector('#weatherDayTwo'))
+
+  //temperatura day three creata con js
+  tempThree.classList.add('temp-prev')
+  tempThree.innerHTML = `${Math.round(responsePrev.list[28].main.temp)}°`
+  let parentTempThree = document.querySelector('.day-three')
+  parentTempThree.insertBefore(tempThree, document.querySelector('#weatherDayThree'))
  
 
 
