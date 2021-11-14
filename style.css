@@ -114,7 +114,8 @@ button:hover{
     background: url(./svg/moon.svg);
 }
 .soleggiato,
-.piovoso{
+.piovoso,
+.temporale{
     background-size: cover;
     animation: scale alternate 1s ease-in-out;
     animation-iteration-count: infinite;
