@@ -113,35 +113,33 @@ button:hover{
 .sole.pm{
     background: url(./svg/moon.svg);
 }
-.soleggiato{
-    background: url(./svg/sun-cloud.svg);
+.soleggiato,
+.piovoso{
     background-size: cover;
     animation: scale alternate 1s ease-in-out;
+    animation-iteration-count: infinite;
+}
+.soleggiato{
+    background: url(./svg/sun-cloud.svg);
+}
+.piovoso{
+    background: url(./svg/rain.svg);
+}
+.temporale{
+    background: url(./svg/storm.svg);
+}
+
+.nuvoloso,
+.nebbia{
+    background-size: cover;
+    animation: poing alternate 3s linear;
     animation-iteration-count: infinite;
 }
 .nuvoloso{
     background: url(./svg/cloud.svg);
-    background-size: cover;
-    animation: poing alternate 3s linear;
-    animation-iteration-count: infinite;
-}
-.piovoso{
-    background: url(./svg/rain.svg);
-    background-size: cover;
-    animation: scale alternate 1s ease-in-out;
-    animation-iteration-count: infinite;
-}
-.temporale{
-    background: url(./svg/storm.svg);
-    background-size: cover;
-    animation: scale alternate 1s ease-in-out;
-    animation-iteration-count: infinite;
 }
 .nebbia{
     background: url(./svg/fog.svg);
-    background-size: cover;
-    animation: poing alternate 3s linear;
-    animation-iteration-count: infinite;
 }
 
 
